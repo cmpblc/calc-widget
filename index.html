@@ -1,126 +1,40 @@
-<!--Start of html-->
 <html>
-
-    <!--Header section-->
-    <head>
-
-        <!--Document tile-->
-        <title>My first html document</title>
-
+    <head>    
     </head>
-
-    <!--Main content of the document-->
     <body>
+        <h2>Merchant Website</h2>
+        <button onclick="showGeneralConditions()">
+            Load general conditions
+        </button>
+        <div class="generalConditions"></div>
+        <script type="text/javascript" src="https://assets.oney.io/build/loader.min.js"></script>
+        <script>
+            function showGeneralConditions () {
 
-        <!--Adding some random content using header (h1-h6) and paragraph (p) commands-->
-        <h1>This information is going to be BIG!</h1>
-        <p>This is the first paragraph in my html document. It appears immediately after the first header, and is going to be followed by a page break (hopefully). I wonder if I'll be able to customise the styling using css in the near future.</p>
-        <br></br>
+                let options = {        
+                    country: "FR",
+                    language: "FR",
+                    merchant_guid: "78ba8feb4eea4ecebb075a1897e2db00",
+                    payment_amount: 560.00,
+                    free_bts: true,
+                    showAsModal: false,
+                    document_type: "3x4xCB",
+                    responseType: "html"
+                };
 
-        <h2>This information is going to be a wee bit smaller</h2>
-        <p>This is the second paragraph in my html document. It appears immediately after the second header, and is going to be followed by a page break or 3.</p>
-        <p>I thought I would add a second paragraph to this section to see how it looks on the page.</p>
-        <br></br>
-        <br></br>
-        <br></br>
+                options.successCallback = function (status, response) {
+                    document.getElementsByClassName("generalConditions")[0].innerHTML = response;                
+                };
 
-        <!--Let's try some pre-formatted text-->
-        <h3>Preformatted text</h3>
-        <pre>Let's maybe try some nice tabulated information:
+                options.errorCallback = function (status, response) {
+                    console.log(status + " - " + response);
+                };
 
-    Name            Age
-    Joe Bloggs      23
-    Jane Eyre       36
-    Eric Cantona    56
-
-    Let's see!</pre>
-        <br></br>
-
-         <!--Would like to now have a look at emphasised text-->
-         <h4>Emphasised text</h4>
-         <p>Within this paragraph, we have included some text which is <b>bold</b>, some which is in <i>italics</i>, some which is <strong>strong</strong> (which may look similar to bold text), and some which is <em>emphasised</em> (which may look similar to italics).</p>
-         <br></br>
-         <p>We can also include <s>text which is struck through</s></p>
-
-         <!--Let's try out lists-->
-         <h5>Lists (these headers are getting small!)</h5>
-         <h6>Unnumbered list</h6>
-         <ul>
-         <li>Bacon</li>
-         <li>Eggs</li>
-         <li>Sausages</li>
-         <li>Toast</li>
-         <li>Beans</li>
-         <li>Mushrooms</li>
-         </ul>
-         <br></br>
-
-         <h6>Numbered list</h6>
-         <ol>
-         <li>Tea</li>
-         <li>Coffee</li>
-         <li>Orange juice</li>
-         <li>Water</li>
-         </ol>
-         <br></br>
-
-         <h6>Definition list</h6>
-         <dl>
-         <dt>Bacon</dt>
-             <dd>Breakfast food</dd>
-             <dd>Derived from pigs</dd>
-         <dt>Toast</dt>
-             <dd>Once bread is made into toast, it can never be turned back into bread</dd>
-         <dt>Mushrooms</dt>
-             <dd>Vegetable?</dd>
-             <dd>Can be eaten as part of a fry up</dd>
-             <dd>Also included in a Spanish Omlette</dd>
-         </dl>
-         <br></br>
-
-         <h6>Nested list (numbered)</h6>
-         <ol>
-         <li>Breakfast items</li>
-            <ol>
-            <li>Bacon</li>
-            <li>Eggs</li>
-            <li>Sausages</li>
-            <li>Toast</li>
-            <li>Beans</li>
-            <li>Mushrooms</li>
-            </ol>
-         <li>Drinks</li>
-            <ol>
-            <li>Tea</li>
-            <li>Coffee</li>
-            <li>Orange juice</li>
-            <li>Water</li>
-            </ol>
-         </ol>
-         <br></br>
-
-            <!--Last few basic commands to try out-->
-            <h3>Some more stuff</h3>
-            <h4>Blockquote</h4>
-            <p>Check out this quote from a famous person:</p>
-            <blockquote>It is wise not to count ones chickens prior to them appearing out of the egg. For otherwise, said chickens may never appear, and one may end up with less chickens than one had initially anticipated.</blockquote>
-            <br></br>
-
-            <h4>Centered stuff</h4>
-            <center>-------MIDDLE OF PAGE-------</center>
-            <br></br>
-
-            <h4>Horizontal rule</h4>
-            <hr>
-            <br></br>
-
-            <h4>Address</h4>
-            <address>Someone trying to learn HTML | 123 Some Street | Some town | Somewhere</address>
-            <br></br>
-
-            
-            <img src="https://cmpblc.github.io/playground/Sisyphus.jpg" alt="Sisyphus">
-
+                loadOneyWidget(function () {
+                    oneyMerchantApp.loadGeneralConditions({ options });
+                });
+            }
+    
+        </script>
     </body>
-
 </html>
